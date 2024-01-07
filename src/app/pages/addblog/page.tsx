@@ -130,13 +130,12 @@ export default function AddBlog() {
     }
 
     const sortParagraphs = (a: ParagraphData, b: ParagraphData) => {
-        const createdAtA: number = a.createdAt || 0;
-        const createdAtB: number = b.createdAt || 0;
+        const createdAtA: number = a.createdAt as number || 0;
+        const createdAtB: number = b.createdAt as number || 0;
 
         if (a.position === b.position) {
-            return (createdAtB as number) - (createdAtA as number);
+            return createdAtB - createdAtA;
         }
-
         return a.position.localeCompare(b.position);
     };
 
