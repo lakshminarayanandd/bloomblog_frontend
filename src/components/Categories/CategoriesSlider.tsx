@@ -103,7 +103,7 @@ const CategoriesSlider = () => {
                 {
                     categories.map((category) => {
                         return (
-                            <SwiperSlide>
+                            <SwiperSlide key={category.path}>
                                 <CategoryCard {...category} />
                             </SwiperSlide>
                         )

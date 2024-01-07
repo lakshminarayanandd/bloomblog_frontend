@@ -4,7 +4,7 @@ const Footer = () => {
 
     return (
         <footer>
-            &copy; {new Date().getFullYear()} Lakshmi Narayanan's Bloom Blog Website.
+            &copy; {new Date().getFullYear()} Lakshmi Narayanan&apos;s Bloom Blog Website.
         </footer>
     );
 };
