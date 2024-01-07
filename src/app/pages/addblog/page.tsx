@@ -130,11 +130,15 @@ export default function AddBlog() {
     }
 
     const sortParagraphs = (a: ParagraphData, b: ParagraphData) => {
+        const createdAtA = a.createdAt || 0; // Use 0 as the default value
+        const createdAtB = b.createdAt || 0; // Use 0 as the default value
+
         if (a.position === b.position) {
-            return b.createdAt! - a.createdAt!;
+            return createdAtB - createdAtA;
         }
         return a.position.localeCompare(b.position);
     }
+
 
     const uploadImage = async (image: File) => {
         try {
