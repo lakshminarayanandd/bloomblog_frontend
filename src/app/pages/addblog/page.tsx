@@ -31,34 +31,35 @@ export default function AddBlog() {
     let [loading, setLoading] = useState(false);
 
     const checkLogin = async () => {
-
-        fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/auth/checklogin`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include'
-        })
-            .then((res) => {
-                return res.json();
+        if (typeof window !== 'undefined') {
+            fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/auth/checklogin`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include'
             })
-            .then((response) => {
-                console.log(response)
+                .then((res) => {
+                    return res.json();
+                })
+                .then((response) => {
+                    console.log(response)
 
 
-                if (response.ok) {
+                    if (response.ok) {
 
 
-                } else {
+                    } else {
 
+                        window.location.href = "/pages/auth/signin"
+
+                    }
+                })
+                .catch((error) => {
                     window.location.href = "/pages/auth/signin"
 
-                }
-            })
-            .catch((error) => {
-                window.location.href = "/pages/auth/signin"
-
-            })
+                })
+        }
     };
 
     useEffect(() => {
