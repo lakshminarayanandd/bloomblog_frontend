@@ -91,42 +91,44 @@ export default function Signin() {
         // let refreshToken = await getCookie('refreshToken')
 
         // console.log(authToken, refreshToken)
-        fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/auth/checklogin`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include'
-        })
-            .then((res) => {
-                return res.json();
+        if (typeof window !== 'undefined') {
+            fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/auth/checklogin`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include'
             })
-            .then((response) => {
-                console.log(response)
+                .then((res) => {
+                    return res.json();
+                })
+                .then((response) => {
+                    console.log(response)
 
 
 
-                if (response.ok) {
-                    // toast(response.message, {
-                    //     type: 'success',
-                    //     position: 'top-right',
-                    //     autoClose: 2000
-                    // })
+                    if (response.ok) {
+                        // toast(response.message, {
+                        //     type: 'success',
+                        //     position: 'top-right',
+                        //     autoClose: 2000
+                        // })
 
+                        window.location.href = "/"
+
+
+                    } else {
+                        // toast(response.message, {
+                        //     type: 'error',
+                        //     position: 'top-right',
+                        //     autoClose: 2000
+                        // });
+                    }
+                })
+                .catch((error) => {
                     window.location.href = "/"
-
-
-                } else {
-                    // toast(response.message, {
-                    //     type: 'error',
-                    //     position: 'top-right',
-                    //     autoClose: 2000
-                    // });
-                }
-            })
-            .catch((error) => {
-                window.location.href = "/"
-            })
+                })
+        }
     };
 
     return (
