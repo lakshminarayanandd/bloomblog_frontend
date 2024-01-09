@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import img1 from '@/assets/sliderTemp/img1.png'
 import img2 from '@/assets/sliderTemp/img2.png'
 import img3 from '@/assets/sliderTemp/img3.png'
@@ -16,11 +16,18 @@ import { Pagination, Navigation } from 'swiper/modules';
 import Image from 'next/image';
 
 
-const width = window.innerWidth;
-const height = window.innerHeight;
-
-
 const HomeSlider = () => {
+    const [width, setWidth] = useState(0);
+    const [height, setHeight] = useState(0);
+
+    useEffect(() => {
+        // Calculate width and height only on the client side
+        if (typeof window !== 'undefined') {
+            setWidth(window.innerWidth);
+            setHeight(window.innerHeight);
+        }
+    }, []);
+
     return (
         <Swiper
             slidesPerView={1}
