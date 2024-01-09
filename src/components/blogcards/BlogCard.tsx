@@ -22,27 +22,24 @@ interface Blog {
 const BlogCard = (data: Blog) => {
     const { title, imageUrl, _id } = data;
 
+    const handleCardClick = () => {
+        if (typeof window !== 'undefined') {
+            window.location.href = `/pages/blogpage?blogid=${_id}`;
+        }
+    };
+
 
     return (
-        <div
-            className='blogcard'
-            onClick={() => {
-                // router.push(`/pages/blogpage?blogid=${_id}`)
-                window.location.href = `/pages/blogpage?blogid=${_id}`
-            }}
-        >
-            <div className='blogimg'
+        <div className='blogcard' onClick={handleCardClick}>
+            <div
+                className='blogimg'
                 style={{
-                    backgroundImage: `url(${imageUrl})`
+                    backgroundImage: `url(${imageUrl})`,
                 }}
-            >
-
-            </div>
-            <p >
-                {title}
-            </p>
+            ></div>
+            <p>{title}</p>
         </div>
-    )
-}
+    );
+};
 
 export default BlogCard
